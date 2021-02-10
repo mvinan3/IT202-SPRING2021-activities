@@ -1,5 +1,7 @@
 let CACHE_NAME = 'my-site-cache-v1';
-let urlsToCache = ['/'];
+let urlsToCache = [
+  '/'
+];
 
 
 self.addEventListener('install', function(event) {
