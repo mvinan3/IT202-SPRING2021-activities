@@ -1,1 +1,1 @@
-# IT202-SPRING2021-activities
+# IT202-Spring2021-activities
