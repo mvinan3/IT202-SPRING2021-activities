@@ -25,13 +25,21 @@
           const uic = { lat: 41.8696, lng: -87.6496 };
           map = new google.maps.Map(document.querySelector("#map"), {
               center: uic,
-              zoom: 10,
+              zoom: 15,
             });
           
           
         let marker = new google.maps.Marker({
             position: uic,
             map: map
+          });
+          
+          let infoWindow = new google.maps.InfoWindow ({
+              content: "University of Illinois at Chicago (UIC)"
+          });
+          
+          marker.addListener("click", () => {
+              infoWindow.open(map, marker)
           });
       }
     </script>
