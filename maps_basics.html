@@ -22,10 +22,17 @@
       let map;
 
       function initMap() {
-        map = new google.maps.Map(document.querySelector("#map"), {
-          center: { lat: -34.397, lng: 150.644 },
-          zoom: 8,
-        });
+          const uic = { lat: 41.8696, lng: -87.6496 };
+          map = new google.maps.Map(document.querySelector("#map"), {
+              center: uic,
+              zoom: 10,
+            });
+          
+          
+        let marker = new google.maps.Marker({
+            position: uic,
+            map: map
+          });
       }
     </script>
   </head>
