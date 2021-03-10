@@ -155,7 +155,7 @@
               })
               .then ( (response) => {return response.json() })  
               .then (function(data) {
-                  
+
 
                   /*
                       nose and glasses lens centers are about 300px apart,
@@ -167,6 +167,9 @@
                   // let right_eye = response.responses[0].faceAnnotations[0].landmarks.filter(function(el) {return el.type == "RIGHT_EYE_PUPIL"})[0];
                   let right_eye = data.responses[0].faceAnnotations[0].landmarks.filter((el) => {return el.type == "RIGHT_EYE"})[0];
                   
+                  let fore_head = data.responses[0].faceAnnotations[0].landmarks.filter((el) => {return el.type == "FOREHEAD_GLABELLA"})[0];
+
+                  //console.log(right_eye, left_eye, fore_head);
                   
                   /*  compare the distance between the eyes in the response data 
                         to the distance between the lens centers to get a scaling pct 
@@ -182,8 +185,7 @@
                   let eye_distance = parseInt(rightX) - parseInt(leftX);
                   
                   
-                  let scale_pct = eye_distance/imageEyeDistance;
-                  console.log(rightX, leftX, eye_distance, scale_pct);   
+                  let scale_pct = eye_distance/imageEyeDistance; 
 
                   /*  after getting that part working, I needed to offset
                       the destination x,y due to drawImage dest x,y as the 
