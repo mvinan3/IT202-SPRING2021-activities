@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="=width=device-width">
+    <title>Lab10</title>
+</head>
+
+<body>
+    <h1>Speech synthesiser</h1>
+
+    <p>Enter some text in the input below and press return or the "play" button to hear it. change voices using the
+        dropdown menu.</p>
+
+    <form>
+        <input type="text" class="txt">
+        <select>
+
+        </select>
+        <div class="controls">
+            <button id="play" type="submit">Play</button>
+        </div>
+    </form>
+
+    <script>
+
+        let inputTxt = document.querySelector('.txt');
+        let voiceSelect = document.querySelector('select');
+        let inputForm = document.querySelector('form');
+
+        window.speechSynthesis.onvoiceschanged = function () {
+            let voices = window.speechSynthesis.getVoices();
+
+            for (let i = 0; i < voices.length; i++) {
+
+                let option = document.createElement('option');
+                option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+
+                if (voices[i].default) {
+                    option.textContent += ' -- DEFAULT';
+                }
+
+                option.setAttribute('data-lang', voices[i].lang);
+                option.setAttribute('data-name', voices[i].name);
+                voiceSelect.appendChild(option);
+            }
+
+
+            inputForm.onsubmit = function (event) {
+                //event.preventDeault();
+
+                let utterThis = new SpeechSynthesisUtterance(inputTxt.value);
+                let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+
+                for (let j = 0; j < voices.length; j++) {
+                    if (voices[j].name === selectedOption) {
+                        console.log(voices[j]);
+                        utterThis.voice = voices[j];
+                    }
+                }
+                window.speechSynthesis.speak(utterThis);
+            }
+        };
+
+    </script>
+</body>
+
+
+</html>
