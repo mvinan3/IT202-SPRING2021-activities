@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MCW Basics</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            #snackbar {
+                visibility: hidden;
+                min-width: 250px;
+                margin-left: -125px;
+                background-color: aquamarine;
+                color: blueviolet;
+                text-align: center;
+                border-radius: 8px;
+                padding: 22px;
+                position: fixed;
+                z-index: 1;
+                left: 50%;
+                bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <input type="text" id="text" placeholder="Enter your name:"> <br><br>
+            <button type="button" id="button">Show Snackbar</button>
+            <div id="snackbar">
+            </div>
+        </form>
+
+        <script>
+            let bttn = document.querySelector("#button");
+            let snack = document.querySelector("#snackbar");
+
+            bttn.addEventListener("click", () => {
+                let value = document.querySelector("#text").value;
+                snack.innerText = "You entered: " + value;
+                snack.style.visibility = "visible";
+            })
+        </script>
+    </body>
+</html>
