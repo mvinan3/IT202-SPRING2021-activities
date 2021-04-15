@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+      <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <!-- this is for the project cards part -->
+      <style>
+      .template {display: none;}
+      </style>
+    <title>lab12</title>
+<!--  this is from week 12   -->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "6e0ab26a-9a8c-4b77-9cfb-de80aeaa2e4e",
+    });
+  });
+</script>
+    
+  </head>
+  <body>
+    <!-- have this to thank the viewer -->
+    <center>
+    <span class="badge bg-success">Congrats! you have made it all the way to the programer's page!</span>
+    </center>
+    <style>
+h1 {
+  font-family: Garamond, serif;
+  padding-left: 600px;
+}
+div{
+  padding-left: 60px;
+}
+img{
+  padding-right: 90px;
+}
+</style>
+
+<!-- an attempt if the actual card will show up -->
+<h1>Hello Viewer</h1>
+    
+    
+      <!-- my attempt on having the photo on the right and then the intro text of me on the left -->
+      <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <center>
+        <h5 class="card-title">A bit about me...
+        </center>
+        <ul>
+          <li>I am currently a softmore at the University of Illinois at Chicago</li>
+          <li>My major is Math in Computer Science</li>
+          <li>My minor is Information Technology</li>
+          <li>I use the following languages:
+              <ul>
+                <li>Python</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+          </li>
+          <li>
+            I enjoy fixing computers by:
+            <ul>
+            <li>Installing new copies of OS into them</li>
+            <li>changing broken screens</li>
+            <li>updating the ram and the user's storage from HDD to SSD</li>
+            <li>And help individuals make the correct purchase according to their needs and budget</li>
+            </ul>
+          </li>
+        </ul>
+        </h5>
+        <p>Want to get to know more of me? Here is a button to my resume and more information upon me</p>
+        <center>
+        <a class="btn btn-primary" href="https://abrahamof606.github.io/" role="button">Link</a>
+        </center>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-center">
+          <center>
+            <p>Here is a photo of me:</p>
+          </center>
+              <img src="lab12.jpg" alt="profile" width="400" height="400" class="centered"> 
+              <center>
+            <p>Photo taken by: Abraham Morales Arroyo</p>
+              </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Below is the part of the placement of projects -->
+<center>
+<p>Here are some projects that I have been working in IT 202 at UIC:</p>
+</center>
+
+<!-- this is the part where I have the part for the projects -->
+    <div class="mdc-card template">
+  <div class="mdc-card__primary-action">
+    <div class="mdc-card__media mdc-card__media--square">
+      <div class="mdc-card__media-content">Title</div>
+    </div>
+    <!-- ... additional primary action content ... -->
+  </div>
+  <div class="mdc-card__actions">
+    <div class="mdc-card__action-buttons">
+      <button class="mdc-button mdc-card__action mdc-card__action--button">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label" href="">Action 1</span>
+      </button>
+      <button class="mdc-button mdc-card__action mdc-card__action--button">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label" href="">Action 2</span>
+      </button>
+    </div>
+    <div class="mdc-card__action-icons">
+      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
+    </div>
+  </div>
+</div>
+
+    <!-- Include Dexie -->
+      <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    
+    <script src="data.js"></script>
+    
+    <script>
+
+      projects.forEach ( (project) => {
+
+        let clone = document.querySelector(".template").cloneNode(true);
+
+        console.log(clone);
+        clone.querySelector(".mdc-card__media-content").innerText = project.name;
+        clone.querySelector(".mdc-card__media-content").innerText = project.tech;
+        clone.querySelectorAll(".mdc-button__label")[0].innerText = "View Page"
+
+        clone.querySelectorAll(".mdc-button__label")[1].innerText = "View Repo"
+
+
+        clone.classList.remove("template");
+
+
+        document.body.append(clone);
+
+
+      })
+
+
+
+      let snackbar = mdc.snackbar.MDCSnackbar.attachTo(document.querySelector('.mdc-snackbar'));
+
+
+    // Define your database
+
+    var db = new Dexie("app_db");
+    db.version(1).stores({
+        names: 'name'
+    });
+
+    </script>
+  </body>
+</html>

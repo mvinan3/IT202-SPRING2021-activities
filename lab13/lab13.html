@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "7468e052-c4bb-4068-adaa-b2db62a309dc",
+    });
+  });
+</script>
+
+  </head>
+  <body>
+    <h1>Lab 13</h1>
+    <script>
+
+      const registerServiceWorker = () =>  {
+          return navigator.serviceWorker.register('./sw.js', {scope: './'})
+          .then(function(registration) {
+            console.log('Service worker successfully registered.', registration);
+            return registration;
+          })
+          .catch(function(err) {
+            console.error('Unable to register service worker.', err);
+          });
+        }
+
+      const serviceWorkerRegistration = registerServiceWorker();
+
+    </script>
+  </body>
+</html>
